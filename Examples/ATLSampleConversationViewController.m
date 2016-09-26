@@ -36,6 +36,8 @@
     self.dataSource = self;
     self.addressBarController.delegate = self;
     
+    self.messageInputToolbar.height = 100;
+    
     // Setup the dateformatter used by the dataSource.
     self.dateFormatter = [[NSDateFormatter alloc] init];
     self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
