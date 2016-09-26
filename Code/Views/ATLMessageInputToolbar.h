@@ -147,15 +147,16 @@ extern NSString *const ATLMessageInputToolbarAccessibilityLabel;
 @property (nonatomic) ATLMessageComposeTextView *textInputView;
 
 /**
- @abstract The height of the Input tool bar.
+ @abstract The margin on top of the textInputView.
+ @default 7.0f.
  */
-@property (nonatomic) CGFloat height;
+@property (nonatomic) CGFloat topMargin;
 
 /**
-  @abstract The margin on top and bottom of the textInputView.
+  @abstract The margin on bottom of the textInputView.
   @default 7.0f.
   */
-@property (nonatomic) CGFloat verticalMargin;
+@property (nonatomic) CGFloat bottomMargin;
 
 /**
  @abstract The delegate object for the view.

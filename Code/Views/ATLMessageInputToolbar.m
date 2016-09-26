@@ -91,7 +91,8 @@ static CGFloat const ATLButtonHeight = 28.0f;
         self.textInputView.layer.cornerRadius = 5.0f;
         [self addSubview:self.textInputView];
         
-        self.verticalMargin = ATLVerticalMargin;
+        self.topMargin = ATLVerticalMargin;
+        self.bottomMargin = ATLVerticalMargin;
         
         self.rightAccessoryButton = [[UIButton alloc] init];
         [self.rightAccessoryButton addTarget:self action:@selector(rightAccessoryButtonTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -150,18 +151,15 @@ static CGFloat const ATLButtonHeight = 28.0f;
     rightButtonFrame.origin.x = CGRectGetWidth(frame) - CGRectGetWidth(rightButtonFrame) - ATLRightButtonHorizontalMargin;
     
     textViewFrame.origin.x = CGRectGetMaxX(leftButtonFrame) + ATLLeftButtonHorizontalMargin;
-    textViewFrame.origin.y = self.verticalMargin;
+    
     textViewFrame.size.width = CGRectGetMinX(rightButtonFrame) - CGRectGetMinX(textViewFrame) - ATLRightButtonHorizontalMargin;
     
     self.dummyTextView.attributedText = self.textInputView.attributedText;
     CGSize fittedTextViewSize = [self.dummyTextView sizeThatFits:CGSizeMake(CGRectGetWidth(textViewFrame), MAXFLOAT)];
     textViewFrame.size.height = ceil(MIN(fittedTextViewSize.height, self.textViewMaxHeight));
+    textViewFrame.origin.y = self.bottomMargin - textViewFrame.size.height;
     
-    if (self.height) {
-        frame.size.height = self.height;
-    } else {
-        frame.size.height = CGRectGetHeight(textViewFrame) + self.verticalMargin * 2;
-    }
+    frame.size.height = CGRectGetHeight(textViewFrame) + self.bottomMargin + self.topMargin;
     frame.origin.y -= frame.size.height - CGRectGetHeight(self.frame);
     
     // Only calculate button centerY once to anchor it to bottom of bar.
