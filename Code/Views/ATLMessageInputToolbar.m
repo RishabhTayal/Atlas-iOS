@@ -151,13 +151,13 @@ static CGFloat const ATLButtonHeight = 28.0f;
     rightButtonFrame.origin.x = CGRectGetWidth(frame) - CGRectGetWidth(rightButtonFrame) - ATLRightButtonHorizontalMargin;
     
     textViewFrame.origin.x = CGRectGetMaxX(leftButtonFrame) + ATLLeftButtonHorizontalMargin;
-    
+    textViewFrame.origin.y = self.topMargin;
+
     textViewFrame.size.width = CGRectGetMinX(rightButtonFrame) - CGRectGetMinX(textViewFrame) - ATLRightButtonHorizontalMargin;
     
     self.dummyTextView.attributedText = self.textInputView.attributedText;
     CGSize fittedTextViewSize = [self.dummyTextView sizeThatFits:CGSizeMake(CGRectGetWidth(textViewFrame), MAXFLOAT)];
     textViewFrame.size.height = ceil(MIN(fittedTextViewSize.height, self.textViewMaxHeight));
-    textViewFrame.origin.y = self.bottomMargin - textViewFrame.size.height;
     
     frame.size.height = CGRectGetHeight(textViewFrame) + self.bottomMargin + self.topMargin;
     frame.origin.y -= frame.size.height - CGRectGetHeight(self.frame);
