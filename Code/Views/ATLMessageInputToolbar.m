@@ -166,8 +166,8 @@ static CGFloat const ATLButtonHeight = 28.0f;
     if (!self.buttonCenterY) {
         self.buttonCenterY = (CGRectGetHeight(frame) - CGRectGetHeight(leftButtonFrame)) / 2;
     }
-    leftButtonFrame.origin.y = frame.size.height - leftButtonFrame.size.height - self.buttonCenterY;
-    rightButtonFrame.origin.y = frame.size.height - rightButtonFrame.size.height - self.buttonCenterY;
+    leftButtonFrame.origin.y = self.topMargin; // frame.size.height - leftButtonFrame.size.height - self.buttonCenterY;
+    rightButtonFrame.origin.y =  self.topMargin; // frame.size.height - rightButtonFrame.size.height - self.buttonCenterY;
     
     BOOL heightChanged = CGRectGetHeight(textViewFrame) != CGRectGetHeight(self.textInputView.frame);
     
