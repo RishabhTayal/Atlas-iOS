@@ -72,6 +72,8 @@ extern NSString *const ATLMessageInputToolbarAccessibilityLabel;
  */
 @interface ATLMessageInputToolbar : UIToolbar
 
+-(id)init;                  NS_DESIGNATED_INITIALIZER;
+
 //------------------------------
 // Content Display Methods
 //------------------------------
