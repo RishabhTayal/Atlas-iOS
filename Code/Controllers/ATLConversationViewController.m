@@ -354,7 +354,12 @@ static NSInteger const ATLPhotoActionSheet = 1000;
         [self.sectionHeaders addObject:header];
         return header;
     } else {
-        ATLConversationCollectionViewFooter *footer = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ATLConversationViewFooterIdentifier forIndexPath:indexPath];
+        ATLConversationCollectionViewFooter* footer;
+        if ([self.dataSource respondsToSelector:@selector(conversationViewController:reuseableViewForForSupplementViewOfKind:atIndexPaeth:)]) {
+            footer =  [self.dataSource conversationViewController:self reuseableViewForForSupplementViewOfKind:kind atIndexPaeth:indexPath];
+        } else {
+            footer = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ATLConversationViewFooterIdentifier forIndexPath:indexPath];
+        }
         [self configureFooter:footer atIndexPath:indexPath];
         [self.sectionFooters addObject:footer];
         return footer;
@@ -782,7 +787,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
     if (!self.conversation) return;
     if (!notification.object) return;
     if (![notification.object isEqual:self.conversation]) return;
-
+    
     LYRTypingIndicator *typingIndicator = notification.userInfo[LYRTypingIndicatorObjectUserInfoKey];
     if (typingIndicator.action == LYRTypingIndicatorActionBegin) {
         [self.typingParticipantIDs addObject:typingIndicator.sender.userID];
