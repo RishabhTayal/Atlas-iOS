@@ -356,8 +356,9 @@ static NSInteger const ATLPhotoActionSheet = 1000;
     } else {
         ATLConversationCollectionViewFooter* footer;
         if ([self.dataSource respondsToSelector:@selector(conversationViewController:reuseableViewForForSupplementViewOfKind:atIndexPaeth:)]) {
-            footer =  [self.dataSource conversationViewController:self reuseableViewForForSupplementViewOfKind:kind atIndexPaeth:indexPath];
-        } else {
+            footer = [self.dataSource conversationViewController:self reuseableViewForForSupplementViewOfKind:kind atIndexPath:indexPath];
+        }
+        if footer == nil {
             footer = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ATLConversationViewFooterIdentifier forIndexPath:indexPath];
         }
         [self configureFooter:footer atIndexPath:indexPath];
