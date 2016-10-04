@@ -358,7 +358,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
         if ([self.dataSource respondsToSelector:@selector(conversationViewController:reuseableViewForForSupplementViewOfKind:atIndexPaeth:)]) {
             footer = [self.dataSource conversationViewController:self reuseableViewForForSupplementViewOfKind:kind atIndexPath:indexPath];
         }
-        if footer == nil {
+        if (footer == nil) {
             footer = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ATLConversationViewFooterIdentifier forIndexPath:indexPath];
         }
         [self configureFooter:footer atIndexPath:indexPath];
