@@ -355,7 +355,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
         return header;
     } else {
         ATLConversationCollectionViewFooter* footer;
-        if ([self.dataSource respondsToSelector:@selector(conversationViewController:reuseableViewForForSupplementViewOfKind:atIndexPaeth:)]) {
+        if ([self.dataSource respondsToSelector:@selector(conversationViewController:reuseableViewForForSupplementViewOfKind:atIndexPath:)]) {
             footer = [self.dataSource conversationViewController:self reuseableViewForForSupplementViewOfKind:kind atIndexPath:indexPath];
         }
         if (footer == nil) {
