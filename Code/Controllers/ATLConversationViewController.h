@@ -148,8 +148,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSString *)conversationViewController:(ATLConversationViewController *)viewController reuseIdentifierForMessage:(LYRMessage *)message;
 
-
 - (nullable UICollectionReusableView *) conversationViewController:(ATLConversationViewController *)viewController reuseableViewForForSupplementViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath*)indexPath;
+
+- (CGFloat)conversationViewController:(ATLConversationViewController*)viewController layout:(UICollectionViewLayout *)collectionViewLayout referenceHeightForFooterInSection:(NSInteger)section;
 
 /**
  @abstract Asks the data source to provide a conversation for a set of participants.

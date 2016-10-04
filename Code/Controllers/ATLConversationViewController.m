@@ -392,7 +392,13 @@ static NSInteger const ATLPhotoActionSheet = 1000;
         readReceipt = [self attributedStringForRecipientStatusOfMessage:[self.conversationDataSource messageAtCollectionViewSection:section]];
     }
     BOOL shouldClusterMessage = [self shouldClusterMessageAtSection:section];
-    CGFloat height = [ATLConversationCollectionViewFooter footerHeightWithRecipientStatus:readReceipt clustered:shouldClusterMessage];
+    CGFloat height;
+    if ([self.dataSource respondsToSelector:@selector(conversationViewController:layout:referenceHeightForFooterInSection:)]) {
+        height = [self.dataSource conversationViewController:self layout:collectionViewLayout referenceHeightForFooterInSection:section];
+    }
+    if (height == 0) {
+        height = [ATLConversationCollectionViewFooter footerHeightWithRecipientStatus:readReceipt clustered:shouldClusterMessage];
+    }
     return CGSizeMake(0, height);
 }
 
